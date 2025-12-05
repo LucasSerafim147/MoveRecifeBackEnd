@@ -1,10 +1,9 @@
-// ...existing code...
+
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors'; // <--- IMPORTANTE
 import { setAuthRoutes } from './routes/authRoutes';
-// import { setDestinationRoutes } from './routes/destinationRoutes';
-// import { setIotRoutes } from './routes/iotRoutes';
 import { connectDB, disconnectDB } from './config/database';
 
 dotenv.config();
@@ -12,9 +11,10 @@ dotenv.config();
 const app = express();
 const PORT = Number(process.env.PORT || 3001);
 
+app.use(cors()); 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 setAuthRoutes(app);
 // setDestinationRoutes(app);
@@ -43,7 +43,6 @@ async function start() {
 
 start();
 
-//
 async function gracefulShutdown() {
     console.log('Shutting down...');
     try {
