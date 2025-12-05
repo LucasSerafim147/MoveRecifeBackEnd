@@ -2,7 +2,8 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
-import cors from 'cors'; // <--- IMPORTANTE
+// @ts-ignore
+import cors from 'cors'; 
 import { setAuthRoutes } from './routes/authRoutes';
 import { connectDB, disconnectDB } from './config/database';
 
